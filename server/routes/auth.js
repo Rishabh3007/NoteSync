@@ -4,6 +4,7 @@ const router = express.Router();
 require('../db/conn');
 const User = require('../models/userSchema');
 const bcrypt = require('bcryptjs');
+const  jwt = require('jsonwebtoken');
     
 router.get('/', (req, res) => {
     res.send('Hello World from the server router js');
@@ -38,6 +39,13 @@ router.post('/signin', async (req, res) => {
         const userLogin = await User.findOne({email: email});
         if(userLogin){
             const isMatch = await bcrypt.compare(password, userLogin.password);
+            const token = await userLogin.generateAuthToken();
+            // console.log(token);
+            res.cookie("jwt_token", token, {
+                //expires in 24 hours
+                expires: new Date(Date.now() + 86400000),
+                httpOnly: true
+            });
             if(!isMatch){
                 res.status(400).json({error: "Invalid credentials - password"});
             }else{
