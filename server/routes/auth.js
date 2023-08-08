@@ -40,9 +40,7 @@ router.post('/signin', async (req, res) => {
         if(userLogin){
             const isMatch = await bcrypt.compare(password, userLogin.password);
             const token = await userLogin.generateAuthToken();
-            // console.log(token);
             res.cookie("jwt_token", token, {
-                //expires in 24 hours
                 expires: new Date(Date.now() + 86400000),
                 httpOnly: true
             });
@@ -54,20 +52,9 @@ router.post('/signin', async (req, res) => {
         }else{
             res.status(400).json({error: "Invalid credentials - email"});
         }
-        // if(userLogin){
-        //     if(userLogin.password === password){
-        //         res.status(200).json({message: "User logged in successfully"});
-        //     }else{
-        //         res.status(400).json({error: "Invalid credentials"});
-        //     }
-        // }else{
-        //     res.status(400).json({error: "Invalid credentials"});
-        // }
     }catch(error){
         console.log(error);
     }
-    // console.log(req.body);
-    // res.send(req.body);
 });
 
 module.exports=router;
