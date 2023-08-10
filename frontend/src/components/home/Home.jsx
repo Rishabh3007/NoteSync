@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CreateArea from "./CreateArea";
 import Note from "./Note";
+import "./home.css";
 
 const Home = () => {
     const [notes, setNotes] = useState([]);
