@@ -6,15 +6,18 @@ import Fab from '@mui/material/Fab';
 function CreateArea(props) {
   const [isExpanded, setExpanded] = useState(false);
 
-  const [note, setNote] = useState({
+  function expand() {
+    setExpanded(true);
+  }
+
+  const [newNote, setNewNote] = useState({
     title: "",
-    content: ""
+    content: "",
   });
 
-  function handleChange(event) {
+  const handleChange = (event) => {
     const { name, value } = event.target;
-
-    setNote(prevNote => {
+    setNewNote(prevNote => {
       return {
         ...prevNote,
         [name]: value
@@ -22,27 +25,31 @@ function CreateArea(props) {
     });
   }
 
-  function submitNote(event) {
-    props.onAdd(note);
-    setNote({
-      title: "",
-      content: ""
-    });
+  const submitNote = async (event) => {
     event.preventDefault();
-  }
-
-  function expand() {
-    setExpanded(true);
+    const res = await fetch('/addnote', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title: newNote.title,
+        content: newNote.content
+      }),
+      credentials: "include"
+    });
+    const data = await res.json();
+    // console.log(data);
   }
 
   return (
     <div>
-      <form className="create-note">
+      <form className="create-note" method="POST">
         {isExpanded && (
           <input
             name="title"
             onChange={handleChange}
-            value={note.title}
+            value={newNote.title}
             placeholder="Title"
           />
         )}
@@ -51,13 +58,13 @@ function CreateArea(props) {
           name="content"
           onClick={expand}
           onChange={handleChange}
-          value={note.content}
+          value={newNote.content}
           placeholder="Take a note..."
           rows={isExpanded ? 3 : 1}
         />
         <Zoom in={isExpanded}>
-          <Fab onClick={submitNote}>
-            <AddIcon />
+          <Fab>
+            <AddIcon onClick={submitNote} />
           </Fab>
         </Zoom>
       </form>

@@ -10,6 +10,7 @@ dotenv.config({ path: '.env' }); //we can use this to set up environment variabl
 require('./db/conn'); //we can use this to connect to our database
 
 app.use(require('./routes/auth')); //we can use this to link our routes files
+app.use(require('./routes/noteRoutes'));
 
 const port = process.env.PORT;
 

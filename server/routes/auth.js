@@ -60,4 +60,5 @@ router.post("/signin", async (req, res) => {
 router.get('/auth', authenticate, (req, res) => {
 });
 
+
 module.exports = router;
