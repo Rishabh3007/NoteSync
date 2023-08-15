@@ -71,7 +71,8 @@ const Home = () => {
             id={noteItem._id}
             title={noteItem.title}
             content={noteItem.content}
-            // onDelete={deleteNote}
+            setNotes={setNotes}
+            notes={notes}
           />
         );
       })}

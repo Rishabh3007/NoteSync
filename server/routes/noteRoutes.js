@@ -38,4 +38,24 @@ router.get('/mynotes', fetchuser,  async (req, res) => {
     }
 });
 
+router.delete('/deletenote', fetchuser, async (req, res) => {
+    // console.log(req.body);
+    // console.log(req.userID);
+    try {
+        const { noteID } = req.body;
+        const note = await Note.findById(noteID);
+        if (!note) {
+            return res.status(404).json({ error: "Note not found" });
+        }
+        if (note.user.toString() !== req.userID) {
+            return res.status(401).json({ error: "Not allowed" });
+        }
+        await Note.deleteOne({ _id: noteID });
+        res.status(200).json({ message: "Note deleted" });
+    } catch (error) {
+        res.status(500).json({ error: "Failed to delete note" });
+        console.log(error);
+    }
+});
+
 module.exports = router;
