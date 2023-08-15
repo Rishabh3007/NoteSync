@@ -6,6 +6,28 @@ import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const navigate  = useNavigate();
+
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [notes, setNotes] = useState([]);
+
+  const mynotes = async () => {
+    try {
+      const res = await fetch('/mynotes/', {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      credentials: "include"
+      });
+      const data = await res.json();
+      setNotes(data);
+      // console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const callHomePage = async () => {
     try{
       const res = await fetch('/auth', {
@@ -15,33 +37,44 @@ const Home = () => {
       if(res.status !== 200){
         navigate('/signin');
       }
-      return 0;
+      else{
+        setUserLoggedIn(true);
+      }
     }
     catch(err){
       console.log(err);
     }
   }
 
+
+
     useEffect(() => {
       callHomePage();
       // eslint-disable-next-line
     }, []);
 
+    useEffect(() => {
+      if(userLoggedIn){
+        mynotes();
+      }
+      // eslint-disable-next-line
+    }, [userLoggedIn]);
+
   
   return (
     <div>
-      <CreateArea/>
-      {/* {notes.map((noteItem, index) => {
+      <CreateArea setNotes={setNotes}/>
+      {notes.map((noteItem) => {
         return (
           <Note
-            key={index}
-            id={index}
+            key={noteItem._id}
+            id={noteItem._id}
             title={noteItem.title}
             content={noteItem.content}
-            onDelete={deleteNote}
+            // onDelete={deleteNote}
           />
         );
-      })} */}
+      })}
     </div>
   )
 }

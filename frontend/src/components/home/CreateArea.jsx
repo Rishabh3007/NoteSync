@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import AddIcon from '@mui/icons-material/Add';
 import Zoom from '@mui/material/Zoom';
 import Fab from '@mui/material/Fab';
+// import { set } from "mongoose";
 
-function CreateArea(props) {
+function CreateArea({setNotes}) {
   const [isExpanded, setExpanded] = useState(false);
 
   function expand() {
@@ -39,7 +40,13 @@ function CreateArea(props) {
       credentials: "include"
     });
     const data = await res.json();
-    // console.log(data);
+    setNotes(prevNotes => {
+      return [...prevNotes, data];
+    });
+    setNewNote({
+      title: "",
+      content: ""
+    });
   }
 
   return (

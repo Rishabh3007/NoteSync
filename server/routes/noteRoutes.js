@@ -27,9 +27,10 @@ router.post("/addnote",fetchuser, async (req, res) => {
 }
 );
 
-router.get('/mynotes/:id', async (req, res) => {
+router.get('/mynotes', fetchuser,  async (req, res) => {
+    // console.log(req.userID);
     try {
-        const notes = await Note.find({ user: req.params.id });
+        const notes = await Note.find({ user: req.userID });
         res.status(200).json(notes);
     } catch (error) {
         res.status(500).json({ error: "Failed to get notes" });
