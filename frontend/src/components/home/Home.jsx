@@ -3,12 +3,17 @@ import CreateArea from "./CreateArea";
 import Note from "./Note";
 import "./home.css";
 import { useNavigate } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+
 
 const Home = () => {
   const navigate  = useNavigate();
 
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [notes, setNotes] = useState([]);
+  const [selectedNote, setSelectedNote] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const mynotes = async () => {
     try {
@@ -22,7 +27,7 @@ const Home = () => {
       });
       const data = await res.json();
       setNotes(data);
-      // console.log(data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -60,11 +65,19 @@ const Home = () => {
       // eslint-disable-next-line
     }, [userLoggedIn]);
 
+    // useEffect(() => {
+    //   console.log(selectedNote);
+    // }, [selectedNote]);
+
   
   return (
     <div>
-      <CreateArea setNotes={setNotes}/>
-      {notes.map((noteItem) => {
+      <CreateArea 
+        setNotes={setNotes}
+        selectedNote={selectedNote}
+        setSelectedNote={setSelectedNote}
+      />
+      {!loading ? notes.map((noteItem) => {
         return (
           <Note
             key={noteItem._id}
@@ -73,9 +86,14 @@ const Home = () => {
             content={noteItem.content}
             setNotes={setNotes}
             notes={notes}
+            setSelectedNote={setSelectedNote}
           />
         );
-      })}
+      }) :
+      <Box display={"flex"} justifyContent={'center'} alignItems={'center'} height={'50vh'}>
+      <CircularProgress />
+      </Box> 
+      }
     </div>
   )
 }

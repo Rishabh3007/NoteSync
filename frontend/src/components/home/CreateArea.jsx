@@ -1,21 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddIcon from '@mui/icons-material/Add';
 import Zoom from '@mui/material/Zoom';
 import Fab from '@mui/material/Fab';
 // import { set } from "mongoose";
+// import { set } from "mongoose";
 
-function CreateArea({setNotes}) {
+function CreateArea({setNotes ,selectedNote, setSelectedNote}) {
   const [isExpanded, setExpanded] = useState(false);
-
   function expand() {
     setExpanded(true);
   }
 
-  const [newNote, setNewNote] = useState({
-    title: "",
-    content: "",
-  });
-
+  const [newNote, setNewNote] = useState(
+    {
+      title: "",
+      content: ""
+    }
+  );
+  useEffect(() => {
+    setNewNote({
+      title: selectedNote!==null ? selectedNote.title : "",
+      content: selectedNote!==null ? selectedNote.content : ""
+    });
+  }, [selectedNote]);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setNewNote(prevNote => {
@@ -28,31 +35,65 @@ function CreateArea({setNotes}) {
 
   const submitNote = async (event) => {
     event.preventDefault();
-    const res = await fetch('/addnote', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        title: newNote.title,
-        content: newNote.content
-      }),
-      credentials: "include"
-    });
-    const data = await res.json();
-    setNotes(prevNotes => {
-      return [...prevNotes, data];
-    });
-    setNewNote({
-      title: "",
-      content: ""
-    });
+    if(selectedNote!==null){
+      const res = await fetch('/editnote', {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          id: selectedNote.id,
+          title: newNote.title,
+          content: newNote.content,
+        }),
+        credentials: "include"
+      });
+      const data = await res.json();
+      // console.log(data)
+      setNotes((prevNotes) => {
+        const newNotes = prevNotes.map(note => {
+          if(note._id === selectedNote.id){
+            return data;
+          }else{
+            return note;
+          }
+        });
+        return newNotes;
+      });
+      setSelectedNote(null);
+      setExpanded(false);
+      setNewNote({
+        title: "",
+        content: ""
+      });
+    }
+    else{
+      const res = await fetch('/addnote', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          title: newNote.title,
+          content: newNote.content
+        }),
+        credentials: "include"
+      });
+      const data = await res.json();
+      setNotes(prevNotes => {
+        return [...prevNotes, data];
+      });
+      setNewNote({
+        title: "",
+        content: ""
+      });
+    }
   }
 
   return (
     <div>
       <form className="create-note" method="POST">
-        {isExpanded && (
+        {(isExpanded || selectedNote!==null) && (
           <input
             name="title"
             onChange={handleChange}
@@ -67,9 +108,9 @@ function CreateArea({setNotes}) {
           onChange={handleChange}
           value={newNote.content}
           placeholder="Take a note..."
-          rows={isExpanded ? 3 : 1}
+          rows={(isExpanded || selectedNote!== null) ? 3 : 1}
         />
-        <Zoom in={isExpanded}>
+        <Zoom in={isExpanded || selectedNote!==null}>
           <Fab>
             <AddIcon onClick={submitNote} />
           </Fab>

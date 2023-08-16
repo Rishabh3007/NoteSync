@@ -58,4 +58,28 @@ router.delete('/deletenote', fetchuser, async (req, res) => {
     }
 });
 
+router.put('/editnote', fetchuser, async (req, res) => {
+    try{
+        const { id, title, content } = req.body;
+        // console.log(req.body);
+        const check = await Note.findById(id)
+        if (!check) {
+            return res.status(404).json({ error: "Note not found" });
+        }
+        if(check.user.toString() !== req.userID){
+            return res.status(401).json({ error: "Not allowed" });
+        }
+        if (!title || !content) {
+            return res.status(422).json({ error: "Please fill all the fields" });
+        }
+        // console.log(id, title, content);
+        const note = await Note.findByIdAndUpdate(id, { title, content }, { new: true });
+        return res.status(200).json(note);
+    }
+    catch(error){
+        res.status(500).json({ error: "Failed to update note" });
+        console.log(error);
+    }
+});     
+
 module.exports = router;
