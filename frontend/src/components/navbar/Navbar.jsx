@@ -1,8 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
+  const navigate = useNavigate();
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const auth = async () => {
+    try {
+      const res = await fetch("/auth", {
+        method: "GET",
+        credentials: "include",
+      });
+      if (res.status === 200) {
+        setUserLoggedIn(true);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    const callauth = async () => {
+      await auth();
+    };
+    callauth();
+    // eslint-disable-next-line 
+  }, [, userLoggedIn]);
+  const callLogout = async () => {
+    try {
+      const res = await fetch("/logout", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      if (res.status === 200) {
+        setUserLoggedIn(false);
+        navigate("/signin", { replace: true });
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -28,17 +74,30 @@ export const Navbar = () => {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item active">
-              <NavLink className="nav-link" to="/register">
-                Register
-              </NavLink>
-            </li>
-            <li className="nav-item active">
-              <NavLink className="nav-link" to="/signin">
-                Sign-In
-              </NavLink>
-            </li>
-            
+            {userLoggedIn ? (
+              <li>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={callLogout}
+                >
+                  Logout
+                </button>
+              </li>
+            ) : (
+              <>
+                <li className="nav-item active">
+                  <NavLink className="nav-link" to="/register">
+                    Register
+                  </NavLink>
+                </li>
+                <li className="nav-item active">
+                  <NavLink className="nav-link" to="/signin">
+                    Sign-In
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </nav>

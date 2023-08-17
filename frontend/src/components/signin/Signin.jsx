@@ -1,8 +1,6 @@
 import React,{useState} from 'react'
-import { useNavigate } from 'react-router-dom';
 
 const Signin = () => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -33,7 +31,8 @@ const Signin = () => {
     }else{
       window.alert("Signin Successful");
       console.log("Signin Successful");
-      navigate("/");
+      // navigate("/", {replace: true});
+      window.location.href = "/";
     }
     
   }
