@@ -71,7 +71,7 @@ const Home = () => {
 
   
   return (
-    <div>
+    <div className="col-md-10 col-12 mx-auto home_page">
       <CreateArea 
         setNotes={setNotes}
         selectedNote={selectedNote}

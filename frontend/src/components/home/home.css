@@ -1,3 +1,29 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --note-bg: #fefefe;
+  --text-color: #595456;
+  --main-color: #03b57b;
+  --main-bg: #f4f1d8;
+  --nav-bg: #323232;
+}
+
+.main-color{
+  color: var(--main-color);
+}
+
+html{
+  font-size: 62.5%;
+}
+
+body{
+  height: 100vh;
+}
+
 .note {
     background: #fff;
     border-radius: 7px;

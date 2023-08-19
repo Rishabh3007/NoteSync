@@ -35,6 +35,12 @@ function CreateArea({setNotes ,selectedNote, setSelectedNote}) {
 
   const submitNote = async (event) => {
     event.preventDefault();
+    newNote.title = newNote.title.trim();
+    newNote.content = newNote.content.trim();
+    if(!newNote.title || !newNote.content){
+      window.alert("Please fill all the fields");
+      return;
+    }
     if(selectedNote!==null){
       const res = await fetch('/editnote', {
         method: "PUT",
