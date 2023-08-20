@@ -1,7 +1,15 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap');
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  background-color: var(--main-bg);
+  font-family: 'Roboto', sans-serif;
 }
 
 :root{
@@ -20,19 +28,42 @@ html{
   font-size: 62.5%;
 }
 
-body{
-  height: 100vh;
+
+.notes-area{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.note {
+/* .note {
     background: #fff;
     border-radius: 7px;
     box-shadow: 0 2px 5px #ccc;
     padding: 10px;
-    width: 240px;
+    width: 26rem;
+    height: 15rem;
     margin: 16px;
-    float: left;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
+
+  .note::-webkit-scrollbar-track
+{
+	background-color: #F5F5F5;
+}
+
+.note::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+.note::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #d1cece;
+}
+
   .note h1 {
     font-size: 1.1em;
     margin-bottom: 6px;
@@ -45,9 +76,7 @@ body{
   }
   
   .note button {
-    position: relative;
-    float: right;
-    margin-right: 10px;
+    position: fixed;
     color: #f5ba13;
     border: none;
     width: auto;
@@ -55,11 +84,93 @@ body{
     display: flex;
     cursor: pointer;
     outline: none;
-  }
+  } */
+
+  /* Base Styles */
+.note {
+  position: relative;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 10px;
+  width: 26rem;
+  height: 15rem;
+  margin: 16px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.4rem;
+  font-family: 'Sedgwick Ave', cursive;
+  color: var(--text-color);
+}
+
+/* Scrollbar Styles */
+.note::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+.note::-webkit-scrollbar {
+  width: 5px;
+  background-color: #f5f5f5;
+}
+
+.note::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #d1cece;
+}
+
+/* Content Styles */
+.note h1 {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.note p {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Button Styles */
+.note button {
+  color: var(--nav-bg);
+  position: sticky;
+  bottom: 5px;
+  right: 5px;
+  margin-top: auto;
+  border: none;
+  width: auto;
+  height: 36px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  z-index: 1;
+  background: transparent;
+}
+.edit-icon {
+  margin-right: 10px;
+}
+.edit-icon:hover{
+  transform: scale(1.5);
+  transition: all 0.s ease-in-out;
+}
+.delete-icon:hover{
+  transform: scale(1.5);
+  transition: all 0.s ease-in-out;
+}
+
+
+
+  /* Base Styles */
+
   
   form.create-note {
     position: relative;
-    width: 480px;
+    width: 48rem;
     margin: 30px auto 20px auto;
     background: #fff;
     padding: 15px;
@@ -72,7 +183,7 @@ body{
     border: none;
     padding: 4px;
     outline: none;
-    font-size: 1.2em;
+    font-size: 1.5rem;
     font-family: inherit;
     resize: none;
   }
@@ -80,7 +191,7 @@ body{
     position: absolute;
     right: 18px;
     bottom: -18px;
-    background: #f5ba13;
+    background: var(--main-color);
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -89,4 +200,11 @@ body{
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     outline: none;
+  }
+
+  @media screen and (max-width: 600px) {
+    form.create-note{
+      width: 90%;
+      padding: 12px;
+    }
   }

@@ -31,8 +31,8 @@ function Note(props) {
       <h1>{props.title}</h1>
       <p>{props.content}</p>
       <button>
-        <EditIcon onClick={handleEdit} />
-        <DeleteIcon onClick={handleClick}/>
+        <EditIcon style={{fontSize:"2rem"}} className="edit-icon" onClick={handleEdit} />
+        <DeleteIcon style={{fontSize:"2rem"}} className="delete-icon" onClick={handleClick}/>
       </button>
     </div>
   );

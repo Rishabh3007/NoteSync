@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NavLink } from "react-router-dom";
 import "./navbar.css";
+import MenuIcon from '@mui/icons-material/Menu';
 
 export const Navbar = () => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
@@ -60,7 +61,7 @@ export const Navbar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <MenuIcon style={{color: "white" , fontSize:"large"}} />
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">

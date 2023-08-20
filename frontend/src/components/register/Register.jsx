@@ -44,14 +44,58 @@ const Register = () => {
 
 
   return (
-    <div>
-        <form method='POST'>
-            <input type="text" placeholder="name" name='name' id='name' value={user.name} onChange={handleChange}></input>
-            <input type="text" placeholder="email" name='email' id='email' value={user.email} onChange={handleChange}></input>
-            <input type="text" placeholder="password" name='password' id='password' value={user.password} onChange={handleChange}></input>
-            <input type="text" placeholder="confirm password" name='cpassword' id='cpassword' value={user.cpassword} onChange={handleChange}></input>
-            <button type="submit" name='register' id='register' onClick={postData}>Register</button>
-        </form>
+    <div className="container">
+      <form method="POST">
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            placeholder="name"
+            name="name"
+            id="name"
+            value={user.name}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            placeholder="email"
+            name="email"
+            id="email"
+            value={user.email}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="text"
+            placeholder="password"
+            name="password"
+            id="password"
+            value={user.password}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="cpassword">Confirm Password</label>
+          <input
+            type="text"
+            placeholder="confirm password"
+            name="cpassword"
+            id="cpassword"
+            value={user.cpassword}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="button-container">
+          <button type="submit" name="register" id="register" className='auth-button' onClick={postData}>
+            Register
+          </button>
+        </div>
+      </form>
     </div>
   )
 }

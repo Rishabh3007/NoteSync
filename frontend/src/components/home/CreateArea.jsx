@@ -118,7 +118,7 @@ function CreateArea({setNotes ,selectedNote, setSelectedNote}) {
         />
         <Zoom in={isExpanded || selectedNote!==null}>
           <Fab>
-            <AddIcon onClick={submitNote} />
+            <AddIcon style={{fontSize: "2.7rem"}} onClick={submitNote} />
           </Fab>
         </Zoom>
       </form>
