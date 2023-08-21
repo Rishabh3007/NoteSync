@@ -29,6 +29,8 @@ function Note(props) {
   return (
     <div className="note">
       <h1>{props.title}</h1>
+      <hr className="divider" />
+
       <p>{props.content}</p>
       <button>
         <EditIcon style={{fontSize:"2rem"}} className="edit-icon" onClick={handleEdit} />

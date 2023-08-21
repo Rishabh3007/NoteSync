@@ -1,12 +1,17 @@
 import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import './register.css'
+import CircularProgress from "@mui/material/CircularProgress";
+import { Alert, Snackbar } from '@mui/material';
 
 const Register = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     name:"",email:"",password:"",cpassword:""
   })
+  const [err, setErr] = useState(false)
+  const [success, setSuccess] = useState(false)
 
   const handleChange = (e) => {
     const {name,value} = e.target;
@@ -20,6 +25,7 @@ const Register = () => {
 
   const postData = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const {name,email,password,cpassword} = user;
     const res = await fetch('/register',{
       method:"POST",
@@ -31,11 +37,14 @@ const Register = () => {
       })
     })
     const data = await res.json();
+    setLoading(false);
     if(res.status === 422 || !data){
-      window.alert("Invalid Registration");
+      // window.alert("Invalid Registration");
+      setErr(true);
       console.log("Invalid Registration");
     }else{
-      window.alert("Registration Successful");
+      // window.alert("Registration Successful");
+      setSuccess(true);
       console.log("Registration Successful");
 
       navigate("/signin");
@@ -44,6 +53,8 @@ const Register = () => {
 
 
   return (
+    <div className="box">
+
     <div className="container">
       <form method="POST">
         <div className="form-group">
@@ -91,12 +102,40 @@ const Register = () => {
           />
         </div>
         <div className="button-container">
-          <button type="submit" name="register" id="register" className='auth-button' onClick={postData}>
+          <button type="submit" name="register" id="register" disabled={loading} className='auth-button' onClick={postData}>
             Register
+            {loading && (
+              <div className="spinner">
+                <CircularProgress size={16} color='primary' thickness={6} />
+              </div>
+              )}
           </button>
         </div>
       </form>
     </div>
+    {err && (
+      <Snackbar
+        anchorOrigin={{vertical:"top",horizontal:"center"}}
+        open={err}
+        autoHideDuration={2000}
+        onClose={() => setErr(false)}
+      >
+        <Alert severity='error' sx={{width:'100%'}}>Invalid Registration</Alert>
+      </Snackbar>
+    )}
+    {success && (
+      <Snackbar
+        anchorOrigin={{vertical:"top",horizontal:"center"}}
+        open={success}
+        autoHideDuration={2000}
+        onClose={() => setSuccess(false)}
+        message="Registration Successful"
+      >
+        <Alert severity='success' sx={{width:'100%'}}>Registration Successful</Alert>
+      </Snackbar>
+    )}
+    </div>
+
   )
 }
 

@@ -1,6 +1,13 @@
+  .box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 90vh;
+  }
   .container {
     max-width: 55rem;
-    margin: 5rem auto;
+    margin: 10rem auto;
     padding: 2.3rem;
     background-color: var(--note-bg);
     border-radius: 1rem;
@@ -34,10 +41,15 @@
     background-color: var(--main-color);
     color: white;
     border: none;
+    margin: auto;
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1.3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
   
   .auth-button:hover {
@@ -51,7 +63,6 @@
     font-size: 1.1rem;
   }
   
-  /* Responsive layout */
   @media screen and (max-width: 600px) {
     .container {
       max-width: 90%;
@@ -59,3 +70,7 @@
     }
   }
   
+
+  .spinner{
+    margin-left: 10px;
+  }

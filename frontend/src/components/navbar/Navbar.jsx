@@ -75,7 +75,7 @@ export const Navbar = () => {
               <li className="nav-item">
               <button
                 type="button"
-                className="btn btn-outline-danger"
+                className="butn"
                 onClick={callLogout}
               >
                 Logout
