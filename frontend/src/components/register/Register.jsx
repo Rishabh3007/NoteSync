@@ -30,7 +30,7 @@ const Register = () => {
     e.preventDefault();
     setLoading(true);
     const {name,email,password,cpassword} = user;
-    const res = await fetch('/register',{
+    const res = await fetch('https://notesync-backend.onrender.com/register',{
       method:"POST",
       headers:{
         "Content-Type":"application/json"

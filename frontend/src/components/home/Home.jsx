@@ -16,7 +16,7 @@ const Home = () => {
 
   const mynotes = async () => {
     try {
-      const res = await fetch("/mynotes/", {
+      const res = await fetch("https://notesync-backend.onrender.com/mynotes/", {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -34,7 +34,7 @@ const Home = () => {
 
   const callHomePage = async () => {
     try {
-      const res = await fetch("/auth", {
+      const res = await fetch("https://notesync-backend.onrender.com/auth", {
         method: "GET",
         credentials: "include",
       });

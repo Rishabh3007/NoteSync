@@ -24,7 +24,7 @@ const Signin = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const res = await fetch("/signin", {
+    const res = await fetch("https://notesync-backend.onrender.com/signin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

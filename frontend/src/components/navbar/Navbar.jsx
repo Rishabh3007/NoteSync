@@ -8,7 +8,7 @@ export const Navbar = () => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const auth = async () => {
     try {
-      const res = await fetch("/auth", {
+      const res = await fetch("https://notesync-backend.onrender.com/auth", {
         method: "GET",
         credentials: "include",
       });
@@ -23,7 +23,7 @@ export const Navbar = () => {
 
   const callLogout = async () => {
     try {
-      const res = await fetch("/logout", {
+      const res = await fetch("https://notesync-backend.onrender.com/logout", {
         method: "GET",
         headers: {
           Accept: "application/json",

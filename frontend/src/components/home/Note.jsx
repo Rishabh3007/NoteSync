@@ -5,7 +5,7 @@ import EditIcon from '@mui/icons-material/Edit';
 function Note(props) {
 
   function handleClick() {
-    fetch('/deletenote', {
+    fetch('https://notesync-backend.onrender.com/deletenote', {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"

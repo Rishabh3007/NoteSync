@@ -43,7 +43,7 @@ function CreateArea({setNotes ,selectedNote, setSelectedNote}) {
       return;
     }
     if(selectedNote!==null){
-      const res = await fetch('/editnote', {
+      const res = await fetch('https://notesync-backend.onrender.com/editnote', {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -75,7 +75,7 @@ function CreateArea({setNotes ,selectedNote, setSelectedNote}) {
       });
     }
     else{
-      const res = await fetch('/addnote', {
+      const res = await fetch('https://notesync-backend.onrender.com/addnote', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
