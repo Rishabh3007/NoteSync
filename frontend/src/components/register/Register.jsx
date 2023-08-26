@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import './register.css'
 import CircularProgress from "@mui/material/CircularProgress";
 import { Alert, Snackbar } from '@mui/material';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -12,6 +14,7 @@ const Register = () => {
   })
   const [err, setErr] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [visibility, setVisibility] = useState(false)
 
   const handleChange = (e) => {
     const {name,value} = e.target;
@@ -81,19 +84,37 @@ const Register = () => {
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
+          <div className="passwordDiv">
+
           <input
-            type="text"
+            type={visibility ? "text" : "password"}
             placeholder="password"
             name="password"
             id="password"
             value={user.password}
             onChange={handleChange}
           />
+
+          {
+            visibility ?
+            <VisibilityIcon
+              style={{fontSize:"1.9rem"}}
+              onClick={() => setVisibility(!visibility)}
+            />
+            :
+            <VisibilityOffIcon
+              style={{fontSize:"1.9rem"}}
+              onClick={() => setVisibility(!visibility)}
+            />
+          }
+
+          </div>
+
         </div>
         <div className="form-group">
           <label htmlFor="cpassword">Confirm Password</label>
           <input
-            type="text"
+            type="password"
             placeholder="confirm password"
             name="cpassword"
             id="cpassword"

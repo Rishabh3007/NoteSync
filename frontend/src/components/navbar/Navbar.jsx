@@ -50,7 +50,7 @@ export const Navbar = () => {
     <div>
       <nav className="navbar navbar-expand-lg">
         <NavLink className="nav-brand" to="/">
-          Note<span className="main-color">Sync</span>
+        <span><img className="logo" src="logo.png" alt="logo" /></span> Note<span className="main-color">Sync</span>
         </NavLink>
         <button
           className="navbar-toggler"

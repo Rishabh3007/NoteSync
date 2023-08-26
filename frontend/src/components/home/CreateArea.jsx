@@ -23,6 +23,7 @@ function CreateArea({setNotes ,selectedNote, setSelectedNote}) {
       content: selectedNote!==null ? selectedNote.content : ""
     });
   }, [selectedNote]);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setNewNote(prevNote => {
@@ -87,7 +88,7 @@ function CreateArea({setNotes ,selectedNote, setSelectedNote}) {
       });
       const data = await res.json();
       setNotes(prevNotes => {
-        return [...prevNotes, data];
+        return [data, ...prevNotes];
       });
       setNewNote({
         title: "",

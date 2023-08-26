@@ -31,6 +31,14 @@
     border: 1px solid #ccc;
     border-radius: 4px;
   }
+
+  .text-field{
+    font-size: 1.2rem;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
   
   .button-container {
     text-align: center;
@@ -73,4 +81,19 @@
 
   .spinner{
     margin-left: 10px;
+  }
+
+  .passwordDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding-right: 6px;
+  }
+
+  .passwordDiv input{
+    outline: none;
+    border: none;
   }

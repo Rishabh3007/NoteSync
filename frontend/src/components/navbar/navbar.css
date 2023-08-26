@@ -3,8 +3,12 @@
 
 
 .navbar{
-    padding: 1rem 1.5rem 1rem 2rem; ;
+    padding: 0.8rem 1.5rem 1rem 2rem; ;
     background-color: var(--nav-bg);
+}
+
+.logo{
+    width: 4rem;
 }
 
 .nav-brand{

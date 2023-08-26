@@ -1,6 +1,8 @@
 import { Alert, CircularProgress, Snackbar } from "@mui/material";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const Signin = () => {
   const [email, setEmail] = useState("");
@@ -8,6 +10,7 @@ const Signin = () => {
   const [loading, setLoading] = useState(false);
   const [login, setLogin] = useState(false);
   const [err, setErr] = useState(false);
+  const [visibility, setVisibility] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,7 +20,6 @@ const Signin = () => {
       setPassword(value);
     }
   };
-
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -46,7 +48,7 @@ const Signin = () => {
     }
   };
 
-  console.log(login);
+  // console.log(login);
   return (
     <>
       <div className="box">
@@ -65,14 +67,30 @@ const Signin = () => {
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input
-                type="text"
-                placeholder="password"
-                name="password"
-                id="password"
-                value={password}
-                onChange={handleChange}
-              ></input>
+              <div className="passwordDiv">
+                <input
+                  type={visibility ? "text" : "password"}
+                  placeholder="password"
+                  name="password"
+                  id="password"
+                  value={password}
+                  onChange={handleChange}
+                  autoComplete="off"
+                ></input>
+
+{
+            visibility ?
+            <VisibilityIcon
+              style={{fontSize:"1.9rem"}}
+              onClick={() => setVisibility(!visibility)}
+            />
+            :
+            <VisibilityOffIcon
+              style={{fontSize:"1.9rem"}}
+              onClick={() => setVisibility(!visibility)}
+            />
+          }
+              </div>
             </div>
             <div className="button-container">
               <button
