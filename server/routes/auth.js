@@ -64,8 +64,9 @@ router.get('/auth', authenticate, (req, res) => {
 
 router.get('/logout', (req, res) => {
   // console.log('logout');
-  res.clearCookie('jwt_token', { path: '/', domain: 'https://notesync-backend.onrender.com' });
+  res.clearCookie('jwt_token', {secure: true, sameSite: "none"});
   res.status(200).send('User logged out successfully');
+  res.end()
 })
 
 
