@@ -13,6 +13,7 @@ function Note(props) {
       body: JSON.stringify({
         noteID: props.id
       }),
+      mode: "cors",
       credentials: "include"
     });
     props.setNotes(props.notes.filter((note) => note._id !== props.id));

@@ -35,6 +35,7 @@ const Register = () => {
       headers:{
         "Content-Type":"application/json"
       },
+      mode: "cors",
       body:JSON.stringify({
         name,email,password,cpassword
       })

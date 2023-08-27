@@ -46,13 +46,15 @@ function CreateArea({setNotes ,selectedNote, setSelectedNote}) {
       const res = await fetch('https://notesync-backend.onrender.com/editnote', {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+
         },
         body: JSON.stringify({
           id: selectedNote.id,
           title: newNote.title,
           content: newNote.content,
         }),
+        mode: "cors",
         credentials: "include"
       });
       const data = await res.json();
@@ -84,6 +86,7 @@ function CreateArea({setNotes ,selectedNote, setSelectedNote}) {
           title: newNote.title,
           content: newNote.content
         }),
+        mode: "cors",
         credentials: "include"
       });
       const data = await res.json();
