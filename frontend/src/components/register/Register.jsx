@@ -36,7 +36,7 @@ const Register = () => {
         "Content-Type":"application/json",
         "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com/editnote"
       },
-      mode: "cors",
+      mode: "no-cors",
       body:JSON.stringify({
         name,email,password,cpassword
       })
