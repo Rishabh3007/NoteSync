@@ -54,7 +54,6 @@ function CreateArea({setNotes ,selectedNote, setSelectedNote}) {
           title: newNote.title,
           content: newNote.content,
         }),
-        mode: "no-cors",
         credentials: "include"
       });
       const data = await res.json();
@@ -88,7 +87,6 @@ function CreateArea({setNotes ,selectedNote, setSelectedNote}) {
           title: newNote.title,
           content: newNote.content
         }),
-        mode: "no-cors",
         credentials: "include"
       });
       const data = await res.json();

@@ -10,7 +10,6 @@ export const Navbar = () => {
     try {
       const res = await fetch("https://notesync-backend.onrender.com/auth", {
         method: "GET",
-        mode: "no-cors",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -36,7 +35,6 @@ export const Navbar = () => {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com/editnote"
         },
-        mode: "no-cors",
         credentials: "include",
       });
       if (res.status === 200) {
