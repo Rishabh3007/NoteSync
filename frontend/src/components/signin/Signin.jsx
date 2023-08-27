@@ -28,7 +28,7 @@ const Signin = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com/editnote"
+        "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com"
       },
       body: JSON.stringify({
         email,

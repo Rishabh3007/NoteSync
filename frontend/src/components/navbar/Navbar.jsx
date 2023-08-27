@@ -13,7 +13,7 @@ export const Navbar = () => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com/editnote"
+          "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com"
         },
         credentials: "include",
       });
@@ -33,7 +33,7 @@ export const Navbar = () => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com/editnote"
+          "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com"
         },
         credentials: "include",
       });

@@ -9,7 +9,7 @@ function Note(props) {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com/editnote"
+        "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com"
       },
       body: JSON.stringify({
         noteID: props.id
