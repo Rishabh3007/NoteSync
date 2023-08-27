@@ -8,7 +8,7 @@ const cors = require('cors');
 app.use(express.json());
 app.use(cors({
     origin: ["https://note-sync1.vercel.app", "http://localhost:3000"],
-    credentials: true,
+    credentials: "include",
     methods: ['GET', 'POST', 'PUT', 'DELETE']
   }));
 
