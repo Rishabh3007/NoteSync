@@ -47,7 +47,10 @@ function CreateArea({setNotes ,selectedNote, setSelectedNote}) {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Credentials": "true"
         },
         body: JSON.stringify({
           id: selectedNote.id,
@@ -80,8 +83,10 @@ function CreateArea({setNotes ,selectedNote, setSelectedNote}) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
-
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Credentials": "true"
         },
         body: JSON.stringify({
           title: newNote.title,

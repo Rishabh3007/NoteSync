@@ -19,9 +19,11 @@ const Home = () => {
       const res = await fetch("https://notesync-backend.onrender.com/mynotes/", {
         method: "GET",
         headers: {
-          Accept: "application/json",
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Credentials": "true"
         },
         credentials: "include",
       });
@@ -38,9 +40,11 @@ const Home = () => {
       const res = await fetch("https://notesync-backend.onrender.com/auth", {
         method: "GET",
         headers: {
-          Accept: "application/json",
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Credentials": "true"
         },
         credentials: "include",
       });

@@ -33,8 +33,11 @@ const Register = () => {
     const res = await fetch('https://notesync-backend.onrender.com/register',{
       method:"POST",
       headers:{
-        "Content-Type":"application/json",
-        "Access-Control-Allow-Origin": "*"
+        "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Credentials": "true"
       },
       body:JSON.stringify({
         name,email,password,cpassword
