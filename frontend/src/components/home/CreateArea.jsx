@@ -47,7 +47,7 @@ function CreateArea({setNotes ,selectedNote, setSelectedNote}) {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com"
+          "Access-Control-Allow-Origin": "*"
         },
         body: JSON.stringify({
           id: selectedNote.id,
@@ -80,7 +80,7 @@ function CreateArea({setNotes ,selectedNote, setSelectedNote}) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com"
+          "Access-Control-Allow-Origin": "*"
 
         },
         body: JSON.stringify({

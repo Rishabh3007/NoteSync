@@ -34,7 +34,7 @@ const Register = () => {
       method:"POST",
       headers:{
         "Content-Type":"application/json",
-        "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com"
+        "Access-Control-Allow-Origin": "*"
       },
       body:JSON.stringify({
         name,email,password,cpassword
