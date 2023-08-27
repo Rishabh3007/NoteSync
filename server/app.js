@@ -6,12 +6,7 @@ const cors = require('cors');
 
 
 app.use(express.json());
-app.use(cors(
-    {
-        origin: "https://note-sync1.vercel.app/",
-        credentials: true
-    }
-));
+app.use(cors());
 
 
 dotenv.config({ path: '.env' }); //we can use this to set up environment variables in our application and then we can access them anywhere in our application
