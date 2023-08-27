@@ -16,8 +16,8 @@ require('./db/conn'); //we can use this to connect to our database
 app.use(require('./routes/auth')); //we can use this to link our routes files
 app.use(require('./routes/noteRoutes'));
 
-// const port = process.env.PORT;
+const port = process.env.PORT;
 
-// app.listen(port, () => {
-//     console.log(`app listening on port ${port}!`);
-// });
+app.listen(port, () => {
+    console.log(`app listening on port ${port}!`);
+});
