@@ -11,6 +11,7 @@ app.use(cors({
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE']
   }));
+  app.set('trust proxy', 1);
 
 
 dotenv.config({ path: '.env' }); //we can use this to set up environment variables in our application and then we can access them anywhere in our application
