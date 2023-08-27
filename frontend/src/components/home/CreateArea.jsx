@@ -47,7 +47,7 @@ function CreateArea({setNotes ,selectedNote, setSelectedNote}) {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-
+          "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com/editnote"
         },
         body: JSON.stringify({
           id: selectedNote.id,
@@ -80,7 +80,9 @@ function CreateArea({setNotes ,selectedNote, setSelectedNote}) {
       const res = await fetch('https://notesync-backend.onrender.com/addnote', {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com/editnote"
+
         },
         body: JSON.stringify({
           title: newNote.title,

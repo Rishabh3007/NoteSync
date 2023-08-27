@@ -21,6 +21,7 @@ const Home = () => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com/editnote"
         },
         mode: "cors",
         credentials: "include",
@@ -38,6 +39,11 @@ const Home = () => {
       const res = await fetch("https://notesync-backend.onrender.com/auth", {
         method: "GET",
         mode: "cors",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com/editnote"
+        },
         credentials: "include",
       });
       if (res.status !== 200) {

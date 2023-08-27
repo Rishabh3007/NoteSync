@@ -33,7 +33,8 @@ const Register = () => {
     const res = await fetch('https://notesync-backend.onrender.com/register',{
       method:"POST",
       headers:{
-        "Content-Type":"application/json"
+        "Content-Type":"application/json",
+        "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com/editnote"
       },
       mode: "cors",
       body:JSON.stringify({

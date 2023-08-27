@@ -8,7 +8,8 @@ function Note(props) {
     fetch('https://notesync-backend.onrender.com/deletenote', {
       method: "DELETE",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "https://notesync-backend.onrender.com/editnote"
       },
       body: JSON.stringify({
         noteID: props.id
