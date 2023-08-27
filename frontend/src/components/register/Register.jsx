@@ -39,6 +39,7 @@ const Register = () => {
           "Access-Control-Allow-Headers": "*",
           "Access-Control-Allow-Credentials": "true"
       },
+      credentials:"include",
       body:JSON.stringify({
         name,email,password,cpassword
       })

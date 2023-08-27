@@ -33,6 +33,7 @@ const Signin = () => {
           "Access-Control-Allow-Headers": "*",
           "Access-Control-Allow-Credentials": "true"
       },
+      credentials: "include",
       body: JSON.stringify({
         email,
         password,
